@@ -2,19 +2,12 @@ import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
 const galleryContainer = document.querySelector(".gallery");
-
 const lightbox = new SimpleLightbox(".gallery a", {
   captionsData: "alt",
   captionDelay: 250,
 });
 
 export function renderGallery(images) {
-  clearGallery();
-
-  if (!images.length) {
-    return;
-  }
-
   const markup = images
     .map(
       ({ webformatURL, largeImageURL, tags, likes, views, comments, downloads }) => `
@@ -36,7 +29,6 @@ export function renderGallery(images) {
   galleryContainer.insertAdjacentHTML("beforeend", markup);
   lightbox.refresh();
 }
-
 
 export function clearGallery() {
   galleryContainer.innerHTML = "";
